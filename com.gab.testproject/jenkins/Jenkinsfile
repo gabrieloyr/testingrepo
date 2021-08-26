@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'This is a description...')
+    }
+    
+    stages {
+        stage ('Get Details') {
+            steps {
+                echo "Build ID: ${env.BUILD_ID}"
+                echo "Build URL: ${env.BUILD_URL}"
+                echo "Jenkins URL: ${env.JENKINS_URL}"
+                echo "Job Name: ${env.JOB_NAME}"
+                
+                echo "${params.Greeting} World!"
+            }
+        }
+        
+        stage ('Build') {
+            steps {
+                echo 'Build...'
+            }
+        }
+        
+        stage ('Deploy') {
+            steps {
+                echo 'Deploy...'
+            }
+        }
+        
+        stage ('Test') {
+            steps {
+                echo 'Test...'
+            }
+        }
+        
+        stage ('Release') {
+            steps {
+                echo 'Release...'
+            }   
+        }
+        
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
