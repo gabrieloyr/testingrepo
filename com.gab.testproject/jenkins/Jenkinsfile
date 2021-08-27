@@ -49,6 +49,15 @@ pipeline {
             }   
         }
         
+        stage ('Abort') {
+            options {
+                timeout(time: 5, unit:'MINUTES')
+            }
+            steps {
+                echo 'going to abort in 5 mins'
+            }
+        }
+        
     }
 }
 
