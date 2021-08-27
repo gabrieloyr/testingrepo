@@ -1,45 +1,56 @@
 pipeline {
-    agent none
+    agent any
+    parameters {
+        string (name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'i am testing this')
+        text (name: 'BIOGRAPHY', defaultValue:'', description:'Enter some information here.')
+        booleanParam (name:'TOGGLE', defaultValue: true, description: 'Toggle value')
+        choice (name: 'CHOICE', choices:['One', 'Two', 'Three'], description: 'Select one:')
+        password (name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter password')
+    }
     stages {
-        stage('Build') {
-            agent any
+        stage ('Get Details') {
             steps {
-                echo'build stage..'
+                echo "Build ID: ${env.BUILD_ID}"
+                echo "Build URL: ${env.BUILD_URL}"
+                echo "Jenkins URL: ${env.JENKINS_URL}"
+                echo "Job Name: ${env.JOB_NAME}"
                 
-//                 checkout scm
-//                 sh 'make'
-//                 stash includes: '**/target/*.jar', name: 'app' 
+                //echo "${params.Greeting} World!"
+                
+                echo "Hello ${params.PERSON}"
+                echo "Biography: ${params.BIOGRAPHY}"
+                echo "Toggle: ${params.TOGGLE}"
+                echo "Choice: ${params.CHOICE}"
+                echo "Password: ${params.PASSWORD}"
             }
         }
-        stage('Test on Linux') {
-            agent { 
-                label 'linux'
-            }
+        
+        stage ('Build') {
             steps {
-                echo'test stage..'
-//                 unstash 'app' 
-//                 sh 'make check'
-            }
-            post {
-                always {
-                    junit '**/target/*.xml'
-                }
+                echo 'Build...'
             }
         }
-        stage('Test on Windows') {
-            agent {
-                label 'windows'
-            }
+        
+        stage ('Deploy') {
             steps {
-                echo'test stage..'
-//                 unstash 'app'
-//                 bat 'make check' 
-            }
-            post {
-                always {
-                    junit '**/target/*.xml'
-                }
+                echo 'Deploy...'
             }
         }
+        
+        stage ('Test') {
+            steps {
+                echo 'Test...'
+            }
+        }
+        
+        stage ('Release') {
+            steps {
+                echo 'Release...'
+            }   
+        }
+        
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
