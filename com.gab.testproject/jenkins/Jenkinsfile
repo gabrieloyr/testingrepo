@@ -10,12 +10,16 @@ pipeline {
     stages {
         stage ('Get Details') {
             steps {
+                // env exposes environment variables, e.g. env.PATH or env.BUILD_ID
+                ///////////////////////////////////////////////////////////////////
+                
                 echo "Build ID: ${env.BUILD_ID}"
                 echo "Build URL: ${env.BUILD_URL}"
                 echo "Jenkins URL: ${env.JENKINS_URL}"
                 echo "Job Name: ${env.JOB_NAME}"
                 
-                //echo "${params.Greeting} World!"
+                // params exposts all parameters defined for the Pipeline as a read-only Map, e.g.:
+                // params.MY_PARAM_NAME or params.PERSON
                 
                 echo "Hello ${params.PERSON}"
                 echo "Biography: ${params.BIOGRAPHY}"
@@ -27,7 +31,7 @@ pipeline {
         
         stage ('Build') {
             steps {
-                echo 'Build...'
+                echo "Current Build Result: ${currentBuild.Result}"
             }
         }
         
