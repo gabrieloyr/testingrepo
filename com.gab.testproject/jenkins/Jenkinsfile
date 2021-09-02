@@ -31,7 +31,8 @@ pipeline {
         
         stage ('Build') {
             steps {
-                echo "Current Build Result: ${currentBuild.Result}"
+                echo 'Build...'
+                // echo "Current Build Result: ${currentBuild.Result}"
             }
         }
         
@@ -51,17 +52,7 @@ pipeline {
             steps {
                 echo 'Release...'
             }   
-        }
-        
-        stage ('Abort') {
-            options {
-                timeout(time: 5, unit:'MINUTES')
-            }
-            steps {
-                echo 'going to abort in 5 mins'
-            }
-        }
-        
+        }     
     }
 }
 
