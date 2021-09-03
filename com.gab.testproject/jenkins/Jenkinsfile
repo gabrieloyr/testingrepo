@@ -4,7 +4,7 @@ pipeline {
         string (name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'i am testing this')
         text (name: 'BIOGRAPHY', defaultValue:'', description:'Enter some information here.')
         booleanParam (name:'TOGGLE', defaultValue: true, description: 'Toggle value')
-        choice (name: 'CHOICE', choices:['One', 'Two', 'Three'], description: 'Select one:')
+        choice (name: 'CHOICE', choices:['One', 'Two', 'Three', 'Four', 'Five'], description: 'Select one:')
         password (name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter password')
     }
     stages {
